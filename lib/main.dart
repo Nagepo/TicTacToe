@@ -4,13 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tictactoe/pages/with_bot.dart';
 import 'package:tictactoe/pages/with_player.dart';
 
-//TODO 0- Cambiare root di Github in modo da sincronizzare codice
 //TODO 1- Pulire codice
-//TODO 2- Risolvere problema assets
 //TODO 3- Provare a mettere sfondo in moviemento, o trovare sfondo bello
 //TODO 4- Trovare armocromia per app totale
-
-//TODO extra - CONTROLLARE SE FUNZIONA IL GITHUB WORLD
 
 void main() {
   //this is for the device app orientation
@@ -28,12 +24,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        //textTheme: GoogleFonts.dotoTextTheme()
-      ),
-      home: const MyHomePage(),
+    return const MaterialApp(
+      home: MyHomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -47,13 +39,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  TextStyle titleText = const TextStyle(
-    fontSize: 40,
-    fontWeight: FontWeight.bold,
-    fontFamily: "Fantasy",
-  );
-
-  buttonPacking(x, y) {
+  buttonPacking(String x, IconData y) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -65,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
           width: 10,
         ),
         Text(
-          "$x",
+          x,
           style: GoogleFonts.pixelifySans(
             color: Colors.black,
             fontWeight: FontWeight.bold,
@@ -82,7 +68,6 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          //mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
               "Welcome to",
@@ -99,45 +84,57 @@ class _MyHomePageState extends State<MyHomePage> {
               "TicTacToe",
               style: GoogleFonts.pixelifySans(fontSize: 40),
             ),
-            const SizedBox(
-              height: 175,
+            //this is an AI generated image for the nice homescreen
+            const Image(
+              height: 200,
+              image: AssetImage("assets/Gemini.png"),
             ),
-            //TODO risolvere asset
-            /*const Image(
-              image: AssetImage("assets/gemini.png"),
-            ),*/
-            OutlinedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const PlayerPage(),
+            //this column is for the button section
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: OutlinedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const PlayerPage(),
+                        ),
+                      );
+                    },
+                    style: const ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(Colors.orange),
+                    ),
+                    child: buttonPacking("Play with a friend", Icons.man),
                   ),
-                );
-              },
-              style: const ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll(Colors.orange),
-              ),
-              child: buttonPacking("Play with a friend", Icons.man),
-            ),
-            OutlinedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const BotPage(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: OutlinedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const BotPage(),
+                        ),
+                      );
+                    },
+                    style: const ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(Colors.orange),
+                    ),
+                    child: buttonPacking("Play with a bot", Icons.computer),
                   ),
-                );
-              },
-              style: const ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll(Colors.orange),
-              ),
-              child: buttonPacking("Play with a bot", Icons.computer),
-            ),
-            OutlinedButton(
-              onPressed: () {},
-              style: const ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll(Colors.orange),
-              ),
-              child: buttonPacking("Options", Icons.list),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: OutlinedButton(
+                    onPressed: () {},
+                    style: const ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(Colors.orange),
+                    ),
+                    child: buttonPacking("Options", Icons.list),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

@@ -10,6 +10,8 @@ import 'package:tictactoe/pages/with_player.dart';
 //TODO 3- Provare a mettere sfondo in moviemento, o trovare sfondo bello
 //TODO 4- Trovare armocromia per app totale
 
+//TODO extra - CONTROLLARE SE FUNZIONA IL GITHUB WORLD
+
 void main() {
   //this is for the device app orientation
   WidgetsFlutterBinding.ensureInitialized();

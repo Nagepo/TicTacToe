@@ -5,6 +5,7 @@ import 'package:tictactoe/pages/with_bot.dart';
 import 'package:tictactoe/pages/with_player.dart';
 
 //TODO 1- Pulire codice
+//TODO 2- Cambiare ordine bot e friend
 //TODO 3- Provare a mettere sfondo in moviemento, o trovare sfondo bello
 //TODO 4- Trovare armocromia per app totale
 
@@ -98,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => const PlayerPage(),
+                          builder: (context) => PlayerPage(),
                         ),
                       );
                     },

@@ -39,157 +39,184 @@ class _BotPageState extends State<BotPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.red,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            children: [
-              Card.outlined(
-                color: Colors.grey.shade600,
-                shadowColor: Colors.black,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      fool = !fool;
-                    });
-                  },
-                  child: const Image(
-                    height: 120,
-                    image: AssetImage("assets/X.png"),
+      body: Expanded(
+        child: AspectRatio(
+          aspectRatio: 1,
+          child: Card.outlined(
+            color: Colors.black,
+            shadowColor: Colors.black,
+            child: Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Card.outlined(
+                            color: Colors.grey.shade600,
+                            shadowColor: Colors.black,
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  fool = !fool;
+                                });
+                              },
+                              child: const Image(
+                                height: 120,
+                                image: AssetImage("assets/X.png"),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Card.outlined(
+                            color: Colors.grey.shade600,
+                            shadowColor: Colors.black,
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  fool = !fool;
+                                });
+                              },
+                              child: const Image(
+                                height: 120,
+                                image: AssetImage("assets/O.png"),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Card.outlined(
+                            color: Colors.grey.shade600,
+                            shadowColor: Colors.black,
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  fool = !fool;
+                                });
+                              },
+                              child: const Image(
+                                height: 120,
+                                image: AssetImage("assets/O.png"),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ),
-              Card.outlined(
-                color: Colors.grey.shade600,
-                shadowColor: Colors.black,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      fool = !fool;
-                    });
-                  },
-                  child: const Image(
-                    height: 120,
-                    image: AssetImage("assets/O.png"),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Card.outlined(
+                            color: Colors.grey.shade600,
+                            shadowColor: Colors.black,
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  fool = !fool;
+                                });
+                              },
+                              child: const Image(
+                                height: 120,
+                                image: AssetImage("assets/O.png"),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Card.outlined(
+                            color: Colors.grey.shade600,
+                            shadowColor: Colors.black,
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  fool = !fool;
+                                });
+                              },
+                              child: const Image(
+                                height: 120,
+                                image: AssetImage("assets/X.png"),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Card.outlined(
+                            color: Colors.grey.shade600,
+                            shadowColor: Colors.black,
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  fool = !fool;
+                                });
+                              },
+                              child: const Image(
+                                height: 120,
+                                image: AssetImage("assets/O.png"),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ),
-              Card.outlined(
-                color: Colors.grey.shade600,
-                shadowColor: Colors.black,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      fool = !fool;
-                    });
-                  },
-                  child: const Image(
-                    height: 120,
-                    image: AssetImage("assets/O.png"),
+                  Row(
+                    children: [
+                      Card.outlined(
+                        color: Colors.grey.shade600,
+                        shadowColor: Colors.black,
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              fool = !fool;
+                            });
+                          },
+                          child: const Image(
+                            height: 120,
+                            image: AssetImage("assets/O.png"),
+                          ),
+                        ),
+                      ),
+                      Card.outlined(
+                        color: Colors.grey.shade600,
+                        shadowColor: Colors.black,
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              fool = !fool;
+                            });
+                          },
+                          child: const Image(
+                            height: 120,
+                            image: AssetImage("assets/O.png"),
+                          ),
+                        ),
+                      ),
+                      Card.outlined(
+                        color: Colors.grey.shade600,
+                        shadowColor: Colors.black,
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              fool = !fool;
+                            });
+                          },
+                          child: const Image(
+                            height: 120,
+                            image: AssetImage("assets/X.png"),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
-          Row(
-            children: [
-              Card.outlined(
-                color: Colors.grey.shade600,
-                shadowColor: Colors.black,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      fool = !fool;
-                    });
-                  },
-                  child: const Image(
-                    height: 120,
-                    image: AssetImage("assets/O.png"),
-                  ),
-                ),
-              ),
-              Card.outlined(
-                color: Colors.grey.shade600,
-                shadowColor: Colors.black,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      fool = !fool;
-                    });
-                  },
-                  child: const Image(
-                    height: 120,
-                    image: AssetImage("assets/X.png"),
-                  ),
-                ),
-              ),
-              Card.outlined(
-                color: Colors.grey.shade600,
-                shadowColor: Colors.black,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      fool = !fool;
-                    });
-                  },
-                  child: const Image(
-                    height: 120,
-                    image: AssetImage("assets/O.png"),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Card.outlined(
-                color: Colors.grey.shade600,
-                shadowColor: Colors.black,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      fool = !fool;
-                    });
-                  },
-                  child: const Image(
-                    height: 120,
-                    image: AssetImage("assets/O.png"),
-                  ),
-                ),
-              ),
-              Card.outlined(
-                color: Colors.grey.shade600,
-                shadowColor: Colors.black,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      fool = !fool;
-                    });
-                  },
-                  child: const Image(
-                    height: 120,
-                    image: AssetImage("assets/O.png"),
-                  ),
-                ),
-              ),
-              Card.outlined(
-                color: Colors.grey.shade600,
-                shadowColor: Colors.black,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      fool = !fool;
-                    });
-                  },
-                  child: const Image(
-                    height: 120,
-                    image: AssetImage("assets/X.png"),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
+        ),
       ),
     );
   }

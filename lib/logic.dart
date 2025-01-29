@@ -11,6 +11,14 @@ void checkRisultato() {
   }
 }
 
+AssetImage mossa() {
+  final AssetImage sign =
+      player ? AssetImage("assets/X.png") : AssetImage("assets/O.png");
+  checkRisultato();
+  turnChange();
+  return sign;
+}
+
 void turnChange() {
   player = !player;
 }

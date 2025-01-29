@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tictactoe/logic.dart';
 
 //TODO - Ingrandire e rimandare immagini da Ipad
 
@@ -23,6 +24,9 @@ class BotPage extends StatefulWidget {
 
 class _BotPageState extends State<BotPage> {
   bool fool = false;
+  AssetImage baseSign = AssetImage("assets/Gemini.png");
+  AssetImage placeOne = AssetImage("assets/Gemini.png");
+  AssetImage placeTwo = AssetImage("assets/Gemini.png");
   Icon base = const Icon(
     Icons.square,
     color: Colors.black,
@@ -59,12 +63,14 @@ class _BotPageState extends State<BotPage> {
                             child: GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  fool = !fool;
+                                  if (placeOne == baseSign) {
+                                    placeOne = mossa();
+                                  }
                                 });
                               },
-                              child: const Image(
+                              child: Image(
                                 height: 120,
-                                image: AssetImage("assets/X.png"),
+                                image: placeOne,
                               ),
                             ),
                           ),
@@ -76,12 +82,14 @@ class _BotPageState extends State<BotPage> {
                             child: GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  fool = !fool;
+                                  if (placeTwo == baseSign) {
+                                    placeTwo = mossa();
+                                  }
                                 });
                               },
-                              child: const Image(
+                              child: Image(
                                 height: 120,
-                                image: AssetImage("assets/O.png"),
+                                image: placeTwo,
                               ),
                             ),
                           ),

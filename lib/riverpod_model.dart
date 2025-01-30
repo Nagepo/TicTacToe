@@ -12,6 +12,7 @@ class RiverpodModel extends ChangeNotifier {
     "placeEight": const AssetImage("assets/Gemini.png"),
     "placeNine": const AssetImage("assets/Gemini.png"),
   };
+  AssetImage baseSign = const AssetImage("assets/Gemini.png");
 
   bool winner() {
     const winningCombinations = [

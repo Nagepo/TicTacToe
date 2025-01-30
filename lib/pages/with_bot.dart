@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe/logic.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 //TODO - Ingrandire e rimandare immagini da Ipad
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return const MaterialApp(
       home: BotPage(),
       debugShowCheckedModeBanner: false,
@@ -24,9 +25,20 @@ class BotPage extends StatefulWidget {
 
 class _BotPageState extends State<BotPage> {
   bool fool = false;
-  AssetImage baseSign = AssetImage("assets/Gemini.png");
-  AssetImage placeOne = AssetImage("assets/Gemini.png");
-  AssetImage placeTwo = AssetImage("assets/Gemini.png");
+  AssetImage baseSign = const AssetImage("assets/Gemini.png");
+
+  Map<String, AssetImage> board = {
+    "placeOne": const AssetImage("assets/Gemini.png"),
+    "placeTwo": const AssetImage("assets/Gemini.png"),
+    "placeThree": const AssetImage("assets/Gemini.png"),
+    "placeFour": const AssetImage("assets/Gemini.png"),
+    "placeFive": const AssetImage("assets/Gemini.png"),
+    "placeSix": const AssetImage("assets/Gemini.png"),
+    "placeSeven": const AssetImage("assets/Gemini.png"),
+    "placeEight": const AssetImage("assets/Gemini.png"),
+    "placeNine": const AssetImage("assets/Gemini.png"),
+  };
+
   Icon base = const Icon(
     Icons.square,
     color: Colors.black,
@@ -63,14 +75,14 @@ class _BotPageState extends State<BotPage> {
                             child: GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  if (placeOne == baseSign) {
-                                    placeOne = mossa();
+                                  if (board["placeOne"] == baseSign) {
+                                    board["placeOne"] = mossa();
                                   }
                                 });
                               },
                               child: Image(
                                 height: 120,
-                                image: placeOne,
+                                image: board["placeOne"]!,
                               ),
                             ),
                           ),
@@ -82,14 +94,14 @@ class _BotPageState extends State<BotPage> {
                             child: GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  if (placeTwo == baseSign) {
-                                    placeTwo = mossa();
+                                  if (board["placeTwo"] == baseSign) {
+                                    board["placeTwo"] = mossa();
                                   }
                                 });
                               },
                               child: Image(
                                 height: 120,
-                                image: placeTwo,
+                                image: board["placeTwo"]!,
                               ),
                             ),
                           ),

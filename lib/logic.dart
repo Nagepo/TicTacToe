@@ -37,7 +37,7 @@ bool winner(Map x) {
   return false;
 }
 
-void checkRisultato() {
+/*void checkRisultato() {
   //TODO after setting the riverpod, start doing the tests
   //if (winner(x)) {
   //bool winner = player;
@@ -55,4 +55,4 @@ AssetImage mossa() {
 
 void turnChange() {
   player = !player;
-}
+}*/

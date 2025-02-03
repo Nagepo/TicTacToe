@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tictactoe/pages/with_bot.dart';
-import 'package:tictactoe/pages/with_player.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

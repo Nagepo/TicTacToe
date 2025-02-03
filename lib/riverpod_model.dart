@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class RiverpodModel extends ChangeNotifier {
   //static String p2 = "";
   Map<String, AssetImage> board = {
-    "placeOne": AssetImage("assets/Gemini.png"),
-    "placeTwo": AssetImage("assets/Gemini.png"),
+    "placeOne": const AssetImage("assets/Gemini.png"),
+    "placeTwo": const AssetImage("assets/Gemini.png"),
     "placeThree": const AssetImage("assets/Gemini.png"),
     "placeFour": const AssetImage("assets/Gemini.png"),
     "placeFive": const AssetImage("assets/Gemini.png"),

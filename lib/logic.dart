@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tictactoe/pages/winner.dart';
-import "pages/with_bot.dart";
 
 bool player = false;
 bool vittoria = false;

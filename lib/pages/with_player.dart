@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tictactoe/riverpod.dart';
 
 // ignore: must_be_immutable
 class PlayerPage extends ConsumerWidget {
@@ -8,6 +9,21 @@ class PlayerPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    //this is the gesture detector builder for every pieces of the board
+    GestureDetector boardbuilder(String x) {
+      return GestureDetector(
+        onTap: () {
+          ref.read(ticProvider).mossa(x);
+        },
+        child: Image(
+          height: 120,
+          image: AssetImage(
+            ref.watch(ticProvider).board[x].toString(),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: Colors.orange,
       body: Column(
@@ -45,93 +61,39 @@ class PlayerPage extends ConsumerWidget {
                 children: <Widget>[
                   Container(
                     color: Colors.grey.shade600,
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: const Image(
-                        height: 120,
-                        image: AssetImage("assets/X.png"),
-                      ),
-                    ),
+                    child: boardbuilder("placeOne"),
                   ),
                   Container(
                     color: Colors.grey.shade300,
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: const Image(
-                        height: 120,
-                        image: AssetImage("assets/O.png"),
-                      ),
-                    ),
+                    child: boardbuilder("placeTwo"),
                   ),
                   Container(
                     color: Colors.grey.shade600,
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: const Image(
-                        height: 120,
-                        image: AssetImage("assets/O.png"),
-                      ),
-                    ),
+                    child: boardbuilder("placeThree"),
                   ),
                   Container(
                     color: Colors.grey.shade300,
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: const Image(
-                        height: 120,
-                        image: AssetImage("assets/O.png"),
-                      ),
-                    ),
+                    child: boardbuilder("placeFour"),
                   ),
                   Container(
                     color: Colors.grey.shade600,
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: const Image(
-                        height: 120,
-                        image: AssetImage("assets/X.png"),
-                      ),
-                    ),
+                    child: boardbuilder("placeFive"),
                   ),
                   Container(
                     color: Colors.grey.shade300,
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: const Image(
-                        height: 120,
-                        image: AssetImage("assets/O.png"),
-                      ),
-                    ),
+                    child: boardbuilder("placeSix"),
                   ),
                   Container(
                     color: Colors.grey.shade600,
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: const Image(
-                        height: 120,
-                        image: AssetImage("assets/O.png"),
-                      ),
-                    ),
+                    child: boardbuilder("placeSeven"),
                   ),
                   Container(
                     color: Colors.grey.shade300,
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: const Image(
-                        height: 120,
-                        image: AssetImage("assets/O.png"),
-                      ),
-                    ),
+                    child: boardbuilder("placeEight"),
                   ),
                   Container(
                     color: Colors.grey.shade600,
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: const Image(
-                        height: 120,
-                        image: AssetImage("assets/X.png"),
-                      ),
-                    ),
+                    child: boardbuilder("placeNine"),
                   ),
                 ],
               ),

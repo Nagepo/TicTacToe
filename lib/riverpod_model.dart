@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 class RiverpodModel extends ChangeNotifier {
   //static String p2 = "";
-  Map<String, AssetImage> board = {
-    "placeOne": const AssetImage("assets/Gemini.png"),
-    "placeTwo": const AssetImage("assets/Gemini.png"),
-    "placeThree": const AssetImage("assets/Gemini.png"),
-    "placeFour": const AssetImage("assets/Gemini.png"),
-    "placeFive": const AssetImage("assets/Gemini.png"),
-    "placeSix": const AssetImage("assets/Gemini.png"),
-    "placeSeven": const AssetImage("assets/Gemini.png"),
-    "placeEight": const AssetImage("assets/Gemini.png"),
-    "placeNine": const AssetImage("assets/Gemini.png"),
+  Map<String, String> board = {
+    "placeOne": "assets/Gemini.png",
+    "placeTwo": "assets/Gemini.png",
+    "placeThree": "assets/Gemini.png",
+    "placeFour": "assets/Gemini.png",
+    "placeFive": "assets/Gemini.png",
+    "placeSix": "assets/Gemini.png",
+    "placeSeven": "assets/Gemini.png",
+    "placeEight": "assets/Gemini.png",
+    "placeNine": "assets/Gemini.png",
   };
   AssetImage baseSign = const AssetImage("assets/Gemini.png");
   bool player = false;
@@ -30,10 +30,10 @@ class RiverpodModel extends ChangeNotifier {
 
     List y = [];
 
-    for (AssetImage values in board.values) {
-      if (values == const AssetImage("assets/O.png")) {
+    for (String values in board.values) {
+      if (values == "assets/O.png") {
         y.add("O");
-      } else if (values == const AssetImage("assets/X.png")) {
+      } else if (values == "assets/X.png") {
         y.add("x");
       } else {
         y.add("");
@@ -60,13 +60,11 @@ class RiverpodModel extends ChangeNotifier {
 //}
 
   void mossa(String x) {
-    if (board[x] != const AssetImage("assets/X.png") &&
-        board[x] != const AssetImage("assets/O.png")) {
-      board[x] = player
-          ? const AssetImage("assets/X.png")
-          : const AssetImage("assets/O.png");
+    if (board[x] != "assets/X.png" && board[x] != "assets/O.png") {
+      board[x] = player ? "assets/X.png" : "assets/O.png";
       checkRisultato();
       turnChange();
+      notifyListeners();
     }
   }
 

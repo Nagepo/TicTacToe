@@ -66,79 +66,86 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red,
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text(
-              "Welcome to",
-              style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
+      backgroundColor: const Color.fromARGB(255, 54, 209, 244),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/Back.png"),
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                "Welcome to",
+                style: TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            Text(
-              "THE",
-              style: GoogleFonts.getFont('Lato'),
-            ),
-            Text(
-              "TicTacToe",
-              style: GoogleFonts.pixelifySans(fontSize: 40),
-            ),
-            //this is an AI generated image for the nice homescreen
-            const Image(
-              height: 200,
-              image: AssetImage("assets/Gemini.png"),
-            ),
-            //this column is for the button section
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: OutlinedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => PlayerPage(),
-                        ),
-                      );
-                    },
-                    style: const ButtonStyle(
-                      backgroundColor: WidgetStatePropertyAll(Colors.orange),
+              Text(
+                "THE",
+                style: GoogleFonts.getFont('Lato'),
+              ),
+              Text(
+                "TicTacToe",
+                style: GoogleFonts.pixelifySans(fontSize: 40),
+              ),
+              //this is an AI generated image for the nice homescreen
+              const Image(
+                height: 200,
+                image: AssetImage("assets/Gemini.png"),
+              ),
+              //this column is for the button section
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: OutlinedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => PlayerPage(),
+                          ),
+                        );
+                      },
+                      style: const ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll(Colors.orange),
+                      ),
+                      child: buttonPacking("Play with a friend", Icons.man),
                     ),
-                    child: buttonPacking("Play with a friend", Icons.man),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: OutlinedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => BotPage(),
-                        ),
-                      );
-                    },
-                    style: const ButtonStyle(
-                      backgroundColor: WidgetStatePropertyAll(Colors.orange),
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: OutlinedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => BotPage(),
+                          ),
+                        );
+                      },
+                      style: const ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll(Colors.orange),
+                      ),
+                      child: buttonPacking("Play with a bot", Icons.computer),
                     ),
-                    child: buttonPacking("Play with a bot", Icons.computer),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    style: const ButtonStyle(
-                      backgroundColor: WidgetStatePropertyAll(Colors.orange),
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      style: const ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll(Colors.orange),
+                      ),
+                      child: buttonPacking("Options", Icons.list),
                     ),
-                    child: buttonPacking("Options", Icons.list),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

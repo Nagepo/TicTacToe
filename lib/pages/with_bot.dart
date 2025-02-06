@@ -65,8 +65,31 @@ class BotPage extends ConsumerWidget {
                         boardbuilder("placeSeven"),
                         boardbuilder("placeEight"),
                         boardbuilder("placeNine"),
+                        const SizedBox(
+                          height: 20,
+                        ),
                       ],
                     ),
+//TODO provare con uno wwitch per mostrare o board o card vittoria
+//TODO provare con while loop
+                    if (ref.watch(ticProvider).whoWin != "")
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          child: Card(
+                            child: Column(
+                              children: [
+                                const Text("The winner is"),
+                                Image(
+                                  image:
+                                      AssetImage(ref.watch(ticProvider).whoWin),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
                   ],
                 ),
               ),

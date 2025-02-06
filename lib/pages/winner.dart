@@ -1,28 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tictactoe/riverpod.dart';
+import 'package:tictactoe/riverpod_model.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class WinnerPage extends ConsumerWidget {
+  // ignore: prefer_const_constructors_in_immutables
+  WinnerPage({super.key});
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: WinnerPage(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
-class WinnerPage extends StatefulWidget {
-  const WinnerPage({super.key});
-
-  @override
-  State<WinnerPage> createState() => _WinnerPageState();
-}
-
-class _WinnerPageState extends State<WinnerPage> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: Colors.red,
       body: Center(
@@ -46,9 +32,11 @@ class _WinnerPageState extends State<WinnerPage> {
             ),
             //TODO - Aggiungere l'immagine del segno vittorioso che
             //TODO uccide il segno perdente in base a chi vince
-            const Image(
+            Image(
               height: 200,
-              image: AssetImage("assets/Gemini.png"),
+              image: AssetImage(
+                ref.watch(ticProvider).whoWin,
+              ),
             ),
           ],
         ),

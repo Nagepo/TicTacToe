@@ -64,6 +64,11 @@ flutter:
     - assets/Gemini.png
     - assets/O.png
     - assets/X.png
+    - assets/XO.png
+    - assets/Invisible.png
+    - assets/X_transparent.png
+    - assets/O_transparent.png
+    - assets/Back.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

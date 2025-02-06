@@ -11,6 +11,25 @@ class BotPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    //this is the gesture detector builder for every pieces of the board
+    GestureDetector boardbuilder(String x) {
+      return GestureDetector(
+        onTap: () {
+          ref.read(ticProvider).mossa(x);
+        },
+        child: Card.outlined(
+          color: Colors.grey.shade600,
+          shadowColor: Colors.black,
+          child: Image(
+            height: 120,
+            image: AssetImage(
+              ref.watch(ticProvider).board[x].toString(),
+            ),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: Colors.red,
       body: Center(
@@ -29,127 +48,23 @@ class BotPage extends ConsumerWidget {
                   children: [
                     Row(
                       children: [
-                        Card.outlined(
-                          color: Colors.grey.shade600,
-                          shadowColor: Colors.black,
-                          child: GestureDetector(
-                            onTap: () {
-                              ref.read(ticProvider).mossa("placeOne");
-                            },
-                            child: Image(
-                              height: 120,
-                              image: AssetImage(
-                                ref
-                                    .watch(ticProvider)
-                                    .board["placeOne"]
-                                    .toString(),
-                              ),
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            ref.read(ticProvider).mossa("placeTwo");
-                          },
-                          child: Card.outlined(
-                            color: Colors.grey.shade600,
-                            shadowColor: Colors.black,
-                            child: Image(
-                              height: 120,
-                              image: AssetImage(
-                                ref
-                                    .watch(ticProvider)
-                                    .board["placeTwo"]
-                                    .toString(),
-                              ),
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Card.outlined(
-                            color: Colors.grey.shade600,
-                            shadowColor: Colors.black,
-                            child: const Image(
-                              height: 120,
-                              image: AssetImage("assets/O.png"),
-                            ),
-                          ),
-                        ),
+                        boardbuilder("placeOne"),
+                        boardbuilder("placeTwo"),
+                        boardbuilder("placeThree"),
                       ],
                     ),
                     Row(
                       children: [
-                        GestureDetector(
-                          onTap: () {},
-                          child: Card.outlined(
-                            color: Colors.grey.shade600,
-                            shadowColor: Colors.black,
-                            child: const Image(
-                              height: 120,
-                              image: AssetImage("assets/O.png"),
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Card.outlined(
-                            color: Colors.grey.shade600,
-                            shadowColor: Colors.black,
-                            child: const Image(
-                              height: 120,
-                              image: AssetImage("assets/X.png"),
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Card.outlined(
-                            color: Colors.grey.shade600,
-                            shadowColor: Colors.black,
-                            child: const Image(
-                              height: 120,
-                              image: AssetImage("assets/O.png"),
-                            ),
-                          ),
-                        ),
+                        boardbuilder("placeFour"),
+                        boardbuilder("placeFive"),
+                        boardbuilder("placeSix"),
                       ],
                     ),
                     Row(
                       children: [
-                        GestureDetector(
-                          onTap: () {},
-                          child: Card.outlined(
-                            color: Colors.grey.shade600,
-                            shadowColor: Colors.black,
-                            child: const Image(
-                              height: 120,
-                              image: AssetImage("assets/O.png"),
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Card.outlined(
-                            color: Colors.grey.shade600,
-                            shadowColor: Colors.black,
-                            child: const Image(
-                              height: 120,
-                              image: AssetImage("assets/O.png"),
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Card.outlined(
-                            color: Colors.grey.shade600,
-                            shadowColor: Colors.black,
-                            child: const Image(
-                              height: 120,
-                              image: AssetImage("assets/X.png"),
-                            ),
-                          ),
-                        ),
+                        boardbuilder("placeSeven"),
+                        boardbuilder("placeEight"),
+                        boardbuilder("placeNine"),
                       ],
                     ),
                   ],

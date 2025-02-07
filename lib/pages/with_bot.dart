@@ -31,7 +31,7 @@ class BotPage extends ConsumerWidget {
     }
 
     return Scaffold(
-      backgroundColor: Colors.red,
+      backgroundColor: const Color.fromARGB(255, 54, 209, 244),
       body: Center(
         child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.8,

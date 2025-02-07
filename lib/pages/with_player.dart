@@ -25,7 +25,7 @@ class PlayerPage extends ConsumerWidget {
     }
 
     return Scaffold(
-      backgroundColor: Colors.orange,
+      backgroundColor: const Color.fromARGB(255, 54, 209, 244),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,

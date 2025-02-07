@@ -68,11 +68,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 54, 209, 244),
       body: Container(
-        decoration: const BoxDecoration(
+        /*decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/Back.png"),
           ),
-        ),
+        ),*/
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -102,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(4.0),
-                    child: OutlinedButton(
+                    child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
@@ -112,32 +112,35 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       style: const ButtonStyle(
                         backgroundColor: WidgetStatePropertyAll(Colors.orange),
+                        elevation: WidgetStatePropertyAll(4),
                       ),
                       child: buttonPacking("Play with a friend", Icons.man),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(4.0),
-                    child: OutlinedButton(
+                    child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => BotPage(),
+                            builder: (context) => const BotPage(),
                           ),
                         );
                       },
                       style: const ButtonStyle(
                         backgroundColor: WidgetStatePropertyAll(Colors.orange),
+                        elevation: WidgetStatePropertyAll(4),
                       ),
                       child: buttonPacking("Play with a bot", Icons.computer),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(4.0),
-                    child: OutlinedButton(
+                    child: ElevatedButton(
                       onPressed: () {},
                       style: const ButtonStyle(
                         backgroundColor: WidgetStatePropertyAll(Colors.orange),
+                        elevation: WidgetStatePropertyAll(4),
                       ),
                       child: buttonPacking("Options", Icons.list),
                     ),

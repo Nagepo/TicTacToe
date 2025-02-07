@@ -68,6 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 54, 209, 244),
       body: Container(
+        //this code is useful for a background image
         /*decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/Back.png"),

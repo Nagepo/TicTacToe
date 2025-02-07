@@ -1,21 +1,24 @@
+import 'dart:async';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:tictactoe/pages/winner.dart';
 
 class RiverpodModel extends ChangeNotifier {
   //static String p2 = "";
   Map<String, String> board = {
-    "placeOne": "assets/XO.png",
-    "placeTwo": "assets/XO.png",
-    "placeThree": "assets/XO.png",
-    "placeFour": "assets/Invisible.png",
-    "placeFive": "assets/XO.png",
-    "placeSix": "assets/Invisible.png",
-    "placeSeven": "assets/Invisible.png",
-    "placeEight": "assets/Invisible.png",
-    "placeNine": "assets/Invisible.png",
+    "1": "assets/XO.png",
+    "2": "assets/XO.png",
+    "3": "assets/XO.png",
+    "4": "assets/Invisible.png",
+    "5": "assets/XO.png",
+    "6": "assets/Invisible.png",
+    "7": "assets/Invisible.png",
+    "8": "assets/Invisible.png",
+    "9": "assets/Invisible.png",
   };
   bool player = false;
   String whoWin = "";
+  Random random = Random();
 
   void winner() {
     const winningCombinations = [
@@ -46,7 +49,6 @@ class RiverpodModel extends ChangeNotifier {
       int b = combination[1];
       int c = combination[2];
       if (y[a] != '' && y[a] == y[b] && y[a] == y[c]) {
-        print("${y[a]}");
         if (y[a] == "O") {
           whoWin = "assets/O.png";
         } else {
@@ -56,12 +58,6 @@ class RiverpodModel extends ChangeNotifier {
     }
   }
 
-  void checkRisultato() {
-    //if (winner(x)) {
-    //bool winner = player;
-    //Navigator.of(context).push(MaterialPageRoute(builder: (context) => WinnerPage()),);
-  }
-//}
   void showIcon() {
     for (MapEntry entry in board.entries) {
       if (entry.value != "assets/O.png" && entry.value != "assets/X.png") {
@@ -71,7 +67,7 @@ class RiverpodModel extends ChangeNotifier {
     }
   }
 
-  void mossa(String x) {
+  void move(String x) {
     showIcon();
     if (board[x] != "assets/X.png" && board[x] != "assets/O.png") {
       board[x] = player ? "assets/X.png" : "assets/O.png";
@@ -79,6 +75,35 @@ class RiverpodModel extends ChangeNotifier {
       turnChange();
       winner();
       notifyListeners();
+    }
+  }
+
+  void botGame(String x) {
+    if (board[x] != "assets/X.png" && board[x] != "assets/O.png") {
+      board[x] = player ? "assets/X.png" : "assets/O.png";
+      checkRisultato();
+      turnChange();
+      winner();
+      notifyListeners();
+      Timer(const Duration(seconds: 1), () {
+        botMove();
+      });
+    }
+  }
+
+  void botMove() {
+    while (true) {
+      String y = random.nextInt(9).toString();
+      if (board[y] != "assets/X.png" && board[y] != "assets/O.png") {
+        board[y] = player ? "assets/X.png" : "assets/O.png";
+        checkRisultato();
+        turnChange();
+        winner();
+        notifyListeners();
+        break;
+      } else {
+        continue;
+      }
     }
   }
 

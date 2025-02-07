@@ -13,7 +13,7 @@ class PlayerPage extends ConsumerWidget {
     GestureDetector boardbuilder(String x) {
       return GestureDetector(
         onTap: () {
-          ref.read(ticProvider).mossa(x);
+          ref.read(ticProvider).move(x);
         },
         child: Image(
           height: 120,
@@ -61,39 +61,39 @@ class PlayerPage extends ConsumerWidget {
                 children: <Widget>[
                   Container(
                     color: Colors.grey.shade600,
-                    child: boardbuilder("placeOne"),
+                    child: boardbuilder("1"),
                   ),
                   Container(
                     color: Colors.grey.shade300,
-                    child: boardbuilder("placeTwo"),
+                    child: boardbuilder("2"),
                   ),
                   Container(
                     color: Colors.grey.shade600,
-                    child: boardbuilder("placeThree"),
+                    child: boardbuilder("3"),
                   ),
                   Container(
                     color: Colors.grey.shade300,
-                    child: boardbuilder("placeFour"),
+                    child: boardbuilder("4"),
                   ),
                   Container(
                     color: Colors.grey.shade600,
-                    child: boardbuilder("placeFive"),
+                    child: boardbuilder("5"),
                   ),
                   Container(
                     color: Colors.grey.shade300,
-                    child: boardbuilder("placeSix"),
+                    child: boardbuilder("6"),
                   ),
                   Container(
                     color: Colors.grey.shade600,
-                    child: boardbuilder("placeSeven"),
+                    child: boardbuilder("7"),
                   ),
                   Container(
                     color: Colors.grey.shade300,
-                    child: boardbuilder("placeEight"),
+                    child: boardbuilder("8"),
                   ),
                   Container(
                     color: Colors.grey.shade600,
-                    child: boardbuilder("placeNine"),
+                    child: boardbuilder("9"),
                   ),
                 ],
               ),

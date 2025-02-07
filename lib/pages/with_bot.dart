@@ -15,7 +15,7 @@ class BotPage extends ConsumerWidget {
     GestureDetector boardbuilder(String x) {
       return GestureDetector(
         onTap: () {
-          ref.read(ticProvider).mossa(x);
+          ref.read(ticProvider).botGame(x);
         },
         child: Card.outlined(
           color: Colors.grey.shade600,
@@ -48,23 +48,23 @@ class BotPage extends ConsumerWidget {
                   children: [
                     Row(
                       children: [
-                        boardbuilder("placeOne"),
-                        boardbuilder("placeTwo"),
-                        boardbuilder("placeThree"),
+                        boardbuilder("1"),
+                        boardbuilder("2"),
+                        boardbuilder("3"),
                       ],
                     ),
                     Row(
                       children: [
-                        boardbuilder("placeFour"),
-                        boardbuilder("placeFive"),
-                        boardbuilder("placeSix"),
+                        boardbuilder("4"),
+                        boardbuilder("5"),
+                        boardbuilder("6"),
                       ],
                     ),
                     Row(
                       children: [
-                        boardbuilder("placeSeven"),
-                        boardbuilder("placeEight"),
-                        boardbuilder("placeNine"),
+                        boardbuilder("7"),
+                        boardbuilder("8"),
+                        boardbuilder("9"),
                         const SizedBox(
                           height: 20,
                         ),

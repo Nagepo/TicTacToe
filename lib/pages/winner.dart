@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tictactoe/riverpod.dart';
-import 'package:tictactoe/riverpod_model.dart';
 
 class WinnerPage extends ConsumerWidget {
   // ignore: prefer_const_constructors_in_immutables

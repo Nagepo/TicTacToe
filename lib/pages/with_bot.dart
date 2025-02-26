@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tictactoe/logic.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tictactoe/riverpod.dart';
 import 'package:tictactoe/riverpod_model.dart';
@@ -20,10 +19,16 @@ class BotPage extends ConsumerWidget {
         child: Card.outlined(
           color: Colors.grey.shade600,
           shadowColor: Colors.black,
-          child: Image(
-            height: 120,
-            image: AssetImage(
-              ref.watch(ticProvider).board[x].toString(),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.24,
+            child: AspectRatio(
+              aspectRatio: 1,
+              child: Image(
+                height: 120,
+                image: AssetImage(
+                  ref.watch(ticProvider).board[x].toString(),
+                ),
+              ),
             ),
           ),
         ),
@@ -65,12 +70,10 @@ class BotPage extends ConsumerWidget {
                         boardbuilder("7"),
                         boardbuilder("8"),
                         boardbuilder("9"),
-                        const SizedBox(
-                          height: 20,
-                        ),
                       ],
                     ),
-//TODO provare con uno wwitch per mostrare o board o card vittoria
+//TODO provare con uno switch per
+//TODO mostrare o board o card vittoria
 //TODO provare con while loop
                     if (ref.watch(ticProvider).whoWin != "")
                       Padding(

@@ -51,6 +51,12 @@ class BotPage extends ConsumerWidget {
                   //mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    TextButton(
+                        onPressed: () {
+                          ref.read(ticProvider).notLose();
+                          ref.read(ticProvider).willWin();
+                        },
+                        child: Text("Print")),
                     Row(
                       children: [
                         boardbuilder("1"),

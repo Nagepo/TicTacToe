@@ -54,38 +54,55 @@ class RiverpodModel extends ChangeNotifier {
     return y;
   }
 
-  void notLose() {
-    List y = situation();
+  List notLose() {
+    List yN = situation();
     List zN = [];
 
     for (var combination in winningCombinations) {
-      int pos = 0;
       int a = combination[0];
       int b = combination[1];
       int c = combination[2];
-      if (combination.contains("") ||
-          combination.contains("O") && !combination.contains("X")) {
-        if (y[a] == "O" && y[a] == y[b]) {
-          zN[pos].add(c);
-        } else if (y[b] == "O" && y[b] == y[c]) {
-          zN[pos].add(a);
-        } else if (y[c] == "O" && y[c] == y[a]) {
-          zN[pos].add(b);
-        }
+      if (yN[a] == "O" && yN[a] == yN[b] && yN[c] == "") {
+        zN.add(c);
+      } else if (yN[b] == "O" && yN[b] == yN[c] && yN[a] == "") {
+        zN.add(a);
+      } else if (yN[c] == "O" && yN[c] == yN[a] && yN[b] == "") {
+        zN.add(b);
       }
-      pos++;
     }
+    print(zN);
+    return zN;
   }
 
-  void winner() {
-    List y = situation();
+  List willWin() {
+    List yW = situation();
+    List zW = [];
 
     for (var combination in winningCombinations) {
       int a = combination[0];
       int b = combination[1];
       int c = combination[2];
-      if (y[a] != '' && y[a] == y[b] && y[a] == y[c]) {
-        if (y[a] == "O") {
+      if (yW[a] == "X" && yW[a] == yW[b] && yW[c] == "") {
+        zW.add(c);
+      } else if (yW[b] == "X" && yW[b] == yW[c] && yW[a] == "") {
+        zW.add(a);
+      } else if (yW[c] == "X" && yW[c] == yW[a] && yW[b] == "") {
+        zW.add(b);
+      }
+    }
+    print(zW);
+    return zW;
+  }
+
+  void winner() {
+    List wW = situation();
+
+    for (var combination in winningCombinations) {
+      int a = combination[0];
+      int b = combination[1];
+      int c = combination[2];
+      if (wW[a] != '' && wW[a] == wW[b] && wW[a] == wW[c]) {
+        if (wW[a] == "O") {
           whoWin = "assets/O.png";
         } else {
           whoWin = "assets/X.png";

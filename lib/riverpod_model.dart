@@ -45,7 +45,7 @@ class RiverpodModel extends ChangeNotifier {
       if (values == "assets/O.png") {
         y.add("O");
       } else if (values == "assets/X.png") {
-        y.add("x");
+        y.add("X");
       } else {
         y.add("");
       }
@@ -70,7 +70,6 @@ class RiverpodModel extends ChangeNotifier {
         zN.add(b);
       }
     }
-    print(zN);
     return zN;
   }
 
@@ -90,7 +89,6 @@ class RiverpodModel extends ChangeNotifier {
         zW.add(b);
       }
     }
-    print(zW);
     return zW;
   }
 

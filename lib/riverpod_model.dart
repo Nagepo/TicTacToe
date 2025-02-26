@@ -54,9 +54,9 @@ class RiverpodModel extends ChangeNotifier {
     return y;
   }
 
-  List notLose() {
+  List<int> notLose() {
     List yN = situation();
-    List zN = [];
+    List<int> zN = [];
 
     for (var combination in winningCombinations) {
       int a = combination[0];
@@ -73,9 +73,9 @@ class RiverpodModel extends ChangeNotifier {
     return zN;
   }
 
-  List willWin() {
+  List<int> willWin() {
     List yW = situation();
-    List zW = [];
+    List<int> zW = [];
 
     for (var combination in winningCombinations) {
       int a = combination[0];
@@ -140,9 +140,40 @@ class RiverpodModel extends ChangeNotifier {
     }
   }
 
+  String botChoice() {
+    List<int> zL = notLose();
+    List<int> zW = willWin();
+    List res = [];
+    if (zL.isNotEmpty || zW.isNotEmpty) {
+      List<int> commonElements =
+          zL.where((element) => zW.contains(element)).toList();
+      if (commonElements.isNotEmpty) {
+        int randomIndex = random.nextInt(commonElements.length);
+        int randomNumber = commonElements[randomIndex];
+        return randomNumber.toString();
+      } else if (zL.isEmpty) {
+        int randomIndex = random.nextInt(zW.length);
+        int randomNumber = zW[randomIndex];
+        return randomNumber.toString();
+      } else if (zW.isEmpty) {
+        int randomIndex = random.nextInt(zL.length);
+        int randomNumber = zL[randomIndex];
+        return randomNumber.toString();
+      }
+    }
+    for (var entry in board.entries) {
+      if (entry.value == "assets/Invisible.png") {
+        res.add(int.parse(entry.key));
+      }
+    }
+    int randomIndex = random.nextInt(res.length);
+    int randomNumber = res[randomIndex];
+    return randomNumber.toString();
+  }
+
   void botMove() {
     while (true) {
-      String y = random.nextInt(9).toString();
+      String y = botChoice();
       if (board[y] != "assets/X.png" && board[y] != "assets/O.png") {
         board[y] = player ? "assets/X.png" : "assets/O.png";
         winner();

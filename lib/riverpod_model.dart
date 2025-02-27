@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:tictactoe/pages/winner.dart';
 
 class RiverpodModel extends ChangeNotifier {
-  //static String p2 = "";
   Map<String, String> board = {
     "1": "assets/Invisible.png",
     "2": "assets/Invisible.png",
@@ -32,10 +31,11 @@ class RiverpodModel extends ChangeNotifier {
   String whoWin = "";
   Random random = Random();
 
-  void boardReset() {
-    for (String value in board.values) {
+  void reset() {
+    for (var value in board.values) {
       board[value] = "assets / Invisible.png";
     }
+    whoWin = "";
   }
 
   List situation() {
@@ -107,6 +107,12 @@ class RiverpodModel extends ChangeNotifier {
         }
       }
     }
+    if (whoWin != "") {
+      Timer(
+        const Duration(seconds: 3),
+        () => reset(),
+      );
+    }
   }
 
   void showIcon() {
@@ -130,60 +136,63 @@ class RiverpodModel extends ChangeNotifier {
 
   void botGame(String x) {
     if (board[x] != "assets/X.png" && board[x] != "assets/O.png") {
-      board[x] = player ? "assets/X.png" : "assets/O.png";
+      board[x] = "assets/O.png";
       winner();
       turnChange();
       notifyListeners();
-      Timer(const Duration(seconds: 1), () {
-        botMove();
-      });
+      Timer(
+        const Duration(seconds: 1),
+        () => botMove(),
+      );
     }
   }
 
   String botChoice() {
     List<int> zL = notLose();
     List<int> zW = willWin();
+    List sit = situation();
     List res = [];
     if (zL.isNotEmpty || zW.isNotEmpty) {
+      print("zL: $zL and zW: $zW");
       List<int> commonElements =
           zL.where((element) => zW.contains(element)).toList();
+      print("commonElements: $commonElements");
       if (commonElements.isNotEmpty) {
         int randomIndex = random.nextInt(commonElements.length);
-        int randomNumber = commonElements[randomIndex];
+        int randomNumber = commonElements[randomIndex] + 1;
+        print("commonElemnts");
         return randomNumber.toString();
       } else if (zL.isEmpty) {
         int randomIndex = random.nextInt(zW.length);
-        int randomNumber = zW[randomIndex];
+        int randomNumber = zW[randomIndex] + 1;
+        print("zW");
         return randomNumber.toString();
       } else if (zW.isEmpty) {
         int randomIndex = random.nextInt(zL.length);
-        int randomNumber = zL[randomIndex];
+        int randomNumber = zL[randomIndex] + 1;
+        print("zL");
         return randomNumber.toString();
       }
     }
-    for (var entry in board.entries) {
-      if (entry.value == "assets/Invisible.png") {
-        res.add(int.parse(entry.key));
-      }
-    }
+    res = sit
+        .asMap()
+        .entries
+        .where((entry) => entry.value == "")
+        .map((entry) => entry.key)
+        .toList();
+    print("$res");
     int randomIndex = random.nextInt(res.length);
-    int randomNumber = res[randomIndex];
+    int randomNumber = res[randomIndex] + 1;
+    print("random: $randomNumber");
     return randomNumber.toString();
   }
 
   void botMove() {
-    while (true) {
-      String y = botChoice();
-      if (board[y] != "assets/X.png" && board[y] != "assets/O.png") {
-        board[y] = player ? "assets/X.png" : "assets/O.png";
-        winner();
-        turnChange();
-        notifyListeners();
-        break;
-      } else {
-        continue;
-      }
-    }
+    String y = botChoice();
+    board[y] = "assets/X.png";
+    winner();
+    turnChange();
+    notifyListeners();
   }
 
   void turnChange() {

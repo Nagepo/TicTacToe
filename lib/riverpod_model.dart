@@ -27,18 +27,29 @@ class RiverpodModel extends ChangeNotifier {
     [2, 4, 6] // Diagonal 2
   ];
 
-  bool player = false;
-  String whoWin = "";
+  bool player = false; //Player switch
+  String whoWin = ""; //Winner
   Random random = Random();
 
+//TODO Fixing the reset 'cause it doesn't works
   void reset() {
-    for (var value in board.values) {
-      board[value] = "assets / Invisible.png";
-    }
+    //reset the board and the winner
+    board = {
+      "1": "assets/Invisible.png",
+      "2": "assets/Invisible.png",
+      "3": "assets/Invisible.png",
+      "4": "assets/Invisible.png",
+      "5": "assets/Invisible.png",
+      "6": "assets/Invisible.png",
+      "7": "assets/Invisible.png",
+      "8": "assets/Invisible.png",
+      "9": "assets/Invisible.png",
+    };
     whoWin = "";
   }
 
   List situation() {
+    //build a list of the board situation
     List y = [];
 
     for (String values in board.values) {
@@ -55,6 +66,7 @@ class RiverpodModel extends ChangeNotifier {
   }
 
   List<int> notLose() {
+    //looking at the danger position
     List yN = situation();
     List<int> zN = [];
 
@@ -74,6 +86,7 @@ class RiverpodModel extends ChangeNotifier {
   }
 
   List<int> willWin() {
+    //looking at the good position for the win
     List yW = situation();
     List<int> zW = [];
 
@@ -93,6 +106,7 @@ class RiverpodModel extends ChangeNotifier {
   }
 
   void winner() {
+    // look if someone wins
     List wW = situation();
 
     for (var combination in winningCombinations) {
@@ -107,7 +121,7 @@ class RiverpodModel extends ChangeNotifier {
         }
       }
     }
-    if (whoWin != "") {
+    if (whoWin != "" || situation().isEmpty) {
       Timer(
         const Duration(seconds: 3),
         () => reset(),
@@ -115,17 +129,7 @@ class RiverpodModel extends ChangeNotifier {
     }
   }
 
-  void showIcon() {
-    for (MapEntry entry in board.entries) {
-      if (entry.value != "assets/O.png" && entry.value != "assets/X.png") {
-        board[entry.key] =
-            player ? "assets/O_transparent.png" : "assets/X_transparent.png";
-      }
-    }
-  }
-
   void move(String x) {
-    showIcon();
     if (board[x] != "assets/X.png" && board[x] != "assets/O.png") {
       board[x] = player ? "assets/X.png" : "assets/O.png";
       winner();

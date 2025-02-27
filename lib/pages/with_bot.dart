@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tictactoe/riverpod.dart';
-import 'package:tictactoe/riverpod_model.dart';
-
-//TODO - Ingrandire e rimandare immagini da Ipad
 
 class BotPage extends ConsumerWidget {
   const BotPage({super.key});
@@ -23,10 +21,12 @@ class BotPage extends ConsumerWidget {
             width: MediaQuery.of(context).size.width * 0.24,
             child: AspectRatio(
               aspectRatio: 1,
-              child: Image(
-                height: 120,
-                image: AssetImage(
-                  ref.watch(ticProvider).board[x].toString(),
+              child: Center(
+                child: Image(
+                  height: 120,
+                  image: AssetImage(
+                    ref.watch(ticProvider).board[x].toString(),
+                  ),
                 ),
               ),
             ),
@@ -38,19 +38,23 @@ class BotPage extends ConsumerWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 54, 209, 244),
       body: Center(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.8,
-          child: AspectRatio(
-            aspectRatio: 1,
-            child: Center(
-              child: Card.outlined(
-                  color: Colors.black,
-                  shadowColor: Colors.black,
-                  child: ref.watch(ticProvider).whoWin == ""
-                      ? Column(
+        child: ref.watch(ticProvider).whoWin == ""
+            ? SizedBox(
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: Card.outlined(
+                    color: Colors.black,
+                    shadowColor: Colors.black,
+                    child: Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: Center(
+                        child: Column(
                           mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 boardbuilder("1"),
                                 boardbuilder("2"),
@@ -58,6 +62,7 @@ class BotPage extends ConsumerWidget {
                               ],
                             ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 boardbuilder("4"),
                                 boardbuilder("5"),
@@ -65,6 +70,7 @@ class BotPage extends ConsumerWidget {
                               ],
                             ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 boardbuilder("7"),
                                 boardbuilder("8"),
@@ -72,30 +78,27 @@ class BotPage extends ConsumerWidget {
                               ],
                             ),
                           ],
-                        )
-                      : Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.75,
-                            child: AspectRatio(
-                              aspectRatio: 1,
-                              child: Card(
-                                child: Column(
-                                  children: [
-                                    const Text("The winner is"),
-                                    Image(
-                                      image: AssetImage(
-                                          ref.watch(ticProvider).whoWin),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        )),
-            ),
-          ),
-        ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            : Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "The winner is",
+                    style: GoogleFonts.pixelifySans(
+                      fontSize: 40,
+                    ),
+                  ),
+                  Image(
+                    image: AssetImage(ref.watch(ticProvider).whoWin),
+                    width: MediaQuery.of(context).size.width * 0.80,
+                  ),
+                ],
+              ),
       ),
     );
   }

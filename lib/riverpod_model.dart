@@ -182,7 +182,7 @@ class RiverpodModel extends ChangeNotifier {
     if (board[x] != "assets/X.png" && board[x] != "assets/O.png") {
       board[x] = player ? "assets/X.png" : "assets/O.png";
       winner();
-      turnChange();
+      player = !player;
       notifyListeners();
     }
   }
@@ -193,7 +193,6 @@ class RiverpodModel extends ChangeNotifier {
         board[x] = "assets/O.png";
         can = false;
         winner();
-        turnChange();
         notifyListeners();
         Timer(
           const Duration(seconds: 1),
@@ -207,7 +206,6 @@ class RiverpodModel extends ChangeNotifier {
     String y = botChoice();
     board[y] = "assets/X.png";
     winner();
-    turnChange();
     notifyListeners();
     can = true;
   }
@@ -243,9 +241,5 @@ class RiverpodModel extends ChangeNotifier {
     int randomIndex = random.nextInt(res.length);
     int randomNumber = res[randomIndex] + 1;
     return randomNumber.toString();
-  }
-
-  void turnChange() {
-    player = !player;
   }
 }

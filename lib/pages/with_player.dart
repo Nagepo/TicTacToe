@@ -97,6 +97,13 @@ class PlayerPage extends ConsumerWidget {
                     image: AssetImage(ref.watch(ticProvider).whoWin),
                     width: MediaQuery.of(context).size.width * 0.80,
                   ),
+                  Container(
+                    child: ref.read(ticProvider).whoWin == ""
+                        ? const Text("")
+                        : Container(
+                            child: ref.read(ticProvider).replay(context, "P"),
+                          ),
+                  ),
                 ],
               ),
       ),

@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:tictactoe/pages/winner.dart';
+import 'package:tictactoe/main.dart';
+import 'package:tictactoe/pages/with_bot.dart';
+import 'package:tictactoe/pages/with_player.dart';
 
 class RiverpodModel extends ChangeNotifier {
   Map<String, String> board = {
@@ -27,6 +29,7 @@ class RiverpodModel extends ChangeNotifier {
     [2, 4, 6] // Diagonal 2
   ];
 
+  bool can = true;
   bool player = false; //Player switch
   String whoWin = ""; //Winner
   Random random = Random();
@@ -129,6 +132,52 @@ class RiverpodModel extends ChangeNotifier {
     }
   }
 
+  replay(BuildContext context, x) {
+    Timer(
+      const Duration(seconds: 2),
+      () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Question'),
+              content: const Text('Do you want to play again?'),
+              actions: <Widget>[
+                Expanded(
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const MyHomePage(),
+                        ),
+                      );
+                    },
+                    child: const Text('No'),
+                  ),
+                ),
+                Expanded(
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              x == "B" ? const BotPage() : const PlayerPage(),
+                        ),
+                      );
+                    },
+                    child: const Text('Yes'),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
   void move(String x) {
     if (board[x] != "assets/X.png" && board[x] != "assets/O.png") {
       board[x] = player ? "assets/X.png" : "assets/O.png";
@@ -139,16 +188,28 @@ class RiverpodModel extends ChangeNotifier {
   }
 
   void botGame(String x) {
-    if (board[x] != "assets/X.png" && board[x] != "assets/O.png") {
-      board[x] = "assets/O.png";
-      winner();
-      turnChange();
-      notifyListeners();
-      Timer(
-        const Duration(seconds: 1),
-        () => botMove(),
-      );
+    if (can == true) {
+      if (board[x] != "assets/X.png" && board[x] != "assets/O.png") {
+        board[x] = "assets/O.png";
+        can = false;
+        winner();
+        turnChange();
+        notifyListeners();
+        Timer(
+          const Duration(seconds: 1),
+          () => botMove(),
+        );
+      }
     }
+  }
+
+  void botMove() {
+    String y = botChoice();
+    board[y] = "assets/X.png";
+    winner();
+    turnChange();
+    notifyListeners();
+    can = true;
   }
 
   String botChoice() {
@@ -157,24 +218,19 @@ class RiverpodModel extends ChangeNotifier {
     List sit = situation();
     List res = [];
     if (zL.isNotEmpty || zW.isNotEmpty) {
-      print("zL: $zL and zW: $zW");
       List<int> commonElements =
           zL.where((element) => zW.contains(element)).toList();
-      print("commonElements: $commonElements");
       if (commonElements.isNotEmpty) {
         int randomIndex = random.nextInt(commonElements.length);
         int randomNumber = commonElements[randomIndex] + 1;
-        print("commonElemnts");
         return randomNumber.toString();
       } else if (zL.isEmpty) {
         int randomIndex = random.nextInt(zW.length);
         int randomNumber = zW[randomIndex] + 1;
-        print("zW");
         return randomNumber.toString();
       } else if (zW.isEmpty) {
         int randomIndex = random.nextInt(zL.length);
         int randomNumber = zL[randomIndex] + 1;
-        print("zL");
         return randomNumber.toString();
       }
     }
@@ -184,19 +240,9 @@ class RiverpodModel extends ChangeNotifier {
         .where((entry) => entry.value == "")
         .map((entry) => entry.key)
         .toList();
-    print("$res");
     int randomIndex = random.nextInt(res.length);
     int randomNumber = res[randomIndex] + 1;
-    print("random: $randomNumber");
     return randomNumber.toString();
-  }
-
-  void botMove() {
-    String y = botChoice();
-    board[y] = "assets/X.png";
-    winner();
-    turnChange();
-    notifyListeners();
   }
 
   void turnChange() {

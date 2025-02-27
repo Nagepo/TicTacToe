@@ -5,10 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tictactoe/pages/with_bot.dart';
 import 'package:tictactoe/pages/with_player.dart';
 
-//TODO 1- Pulire codice
-//TODO 2- Cambiare ordine bot e friend
-//TODO 3- Provare a mettere sfondo in moviemento, o trovare sfondo bello
-//TODO 4- Trovare armocromia per app totale
+//TODO 1 - Pulire codice
 
 void main() {
   //this is for the device app orientation
@@ -68,12 +65,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 54, 209, 244),
       body: Container(
-        //this code is useful for a background image
-        /*decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/Back.png"),
-          ),
-        ),*/
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,

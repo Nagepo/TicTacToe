@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:tictactoe/main.dart';
-import 'package:tictactoe/pages/with_bot.dart';
-import 'package:tictactoe/pages/with_player.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RiverpodModel extends ChangeNotifier {

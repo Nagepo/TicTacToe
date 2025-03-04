@@ -229,14 +229,18 @@ class RiverpodModel extends ChangeNotifier {
         return randomNumber.toString();
       }
     }
-    res = sit
-        .asMap()
-        .entries
-        .where((entry) => entry.value == "")
-        .map((entry) => entry.key)
-        .toList();
-    int randomIndex = random.nextInt(res.length);
-    int randomNumber = res[randomIndex] + 1;
-    return randomNumber.toString();
+    if (situation().isNotEmpty || whoWin == "") {
+      res = sit
+          .asMap()
+          .entries
+          .where((entry) => entry.value == "")
+          .map((entry) => entry.key)
+          .toList();
+      int randomIndex = random.nextInt(res.length);
+      int randomNumber = res[randomIndex] + 1;
+      return randomNumber.toString();
+    } else {
+      return "";
+    }
   }
 }

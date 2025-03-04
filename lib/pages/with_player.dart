@@ -48,6 +48,7 @@ class PlayerPage extends ConsumerWidget {
             Icons.arrow_back,
           ),
           onPressed: () {
+            ref.read(ticProvider).reset();
             Navigator.pop(context);
           },
         ),

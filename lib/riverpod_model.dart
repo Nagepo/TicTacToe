@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tictactoe/main.dart';
 import 'package:tictactoe/pages/with_bot.dart';
 import 'package:tictactoe/pages/with_player.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RiverpodModel extends ChangeNotifier {
   Map<String, String> board = {
@@ -48,6 +49,7 @@ class RiverpodModel extends ChangeNotifier {
       "9": "assets/Invisible.png",
     };
     whoWin = "";
+    player = false;
 
     notifyListeners();
   }
@@ -125,12 +127,6 @@ class RiverpodModel extends ChangeNotifier {
         }
       }
     }
-    if (whoWin != "" || situation().isEmpty) {
-      Timer(
-        const Duration(seconds: 3),
-        () => reset(),
-      );
-    }
   }
 
   replay(BuildContext context, x) {
@@ -141,11 +137,14 @@ class RiverpodModel extends ChangeNotifier {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: const Text('Question'),
-              content: const Text('Do you want to play again?'),
+              content: Text(
+                'Do you want to play again?',
+                style: GoogleFonts.pixelifySans(),
+              ),
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
+                    reset();
                     Navigator.of(context).pop();
                     Navigator.of(context).push(
                       MaterialPageRoute(
@@ -153,19 +152,20 @@ class RiverpodModel extends ChangeNotifier {
                       ),
                     );
                   },
-                  child: const Text('No'),
+                  child: Text(
+                    'No',
+                    style: GoogleFonts.pixelifySans(),
+                  ),
                 ),
                 TextButton(
                   onPressed: () {
+                    reset();
                     Navigator.of(context).pop();
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            x == "B" ? const BotPage() : const PlayerPage(),
-                      ),
-                    );
                   },
-                  child: const Text('Yes'),
+                  child: Text(
+                    'Yes',
+                    style: GoogleFonts.pixelifySans(),
+                  ),
                 ),
               ],
             );
@@ -191,10 +191,12 @@ class RiverpodModel extends ChangeNotifier {
         can = false;
         winner();
         notifyListeners();
-        Timer(
-          const Duration(seconds: 1),
-          () => botMove(),
-        );
+        if (situation().contains("") && whoWin == "") {
+          Timer(
+            const Duration(seconds: 1),
+            () => botMove(),
+          );
+        }
       }
     }
   }

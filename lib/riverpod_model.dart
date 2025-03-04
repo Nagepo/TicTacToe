@@ -34,7 +34,6 @@ class RiverpodModel extends ChangeNotifier {
   String whoWin = ""; //Winner
   Random random = Random();
 
-//TODO Fixing the reset 'cause it doesn't works
   void reset() {
     //reset the board and the winner
     board = {
@@ -49,6 +48,8 @@ class RiverpodModel extends ChangeNotifier {
       "9": "assets/Invisible.png",
     };
     whoWin = "";
+
+    notifyListeners();
   }
 
   List situation() {
@@ -143,32 +144,28 @@ class RiverpodModel extends ChangeNotifier {
               title: const Text('Question'),
               content: const Text('Do you want to play again?'),
               actions: <Widget>[
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const MyHomePage(),
-                        ),
-                      );
-                    },
-                    child: const Text('No'),
-                  ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const MyHomePage(),
+                      ),
+                    );
+                  },
+                  child: const Text('No'),
                 ),
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              x == "B" ? const BotPage() : const PlayerPage(),
-                        ),
-                      );
-                    },
-                    child: const Text('Yes'),
-                  ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            x == "B" ? const BotPage() : const PlayerPage(),
+                      ),
+                    );
+                  },
+                  child: const Text('Yes'),
                 ),
               ],
             );

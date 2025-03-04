@@ -18,7 +18,7 @@ class PlayerPage extends ConsumerWidget {
           color: Colors.grey.shade600,
           shadowColor: Colors.black,
           child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.24,
+            width: MediaQuery.of(context).size.width * 0.22,
             child: AspectRatio(
               aspectRatio: 1,
               child: Center(
@@ -37,6 +37,37 @@ class PlayerPage extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 54, 209, 244),
+      appBar: AppBar(
+        iconTheme: const IconThemeData(
+          size: 30,
+          color: Colors.orange,
+        ),
+        backgroundColor: const Color.fromARGB(255, 54, 209, 244),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: Image.asset(
+          "assets/Gemini.png",
+          fit: BoxFit.contain,
+          height: 100,
+        ),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              ref.read(ticProvider).reset();
+            },
+            icon: const Icon(
+              Icons.refresh,
+            ),
+          ),
+        ],
+      ),
       body: Center(
         child: ref.watch(ticProvider).whoWin == ""
             ? SizedBox(

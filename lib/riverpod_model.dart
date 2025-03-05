@@ -220,11 +220,11 @@ class RiverpodModel extends ChangeNotifier {
         int randomIndex = random.nextInt(commonElements.length);
         int randomNumber = commonElements[randomIndex] + 1;
         return randomNumber.toString();
-      } else if (zL.isEmpty) {
+      } else if (zW.isNotEmpty) {
         int randomIndex = random.nextInt(zW.length);
         int randomNumber = zW[randomIndex] + 1;
         return randomNumber.toString();
-      } else if (zW.isEmpty) {
+      } else if (zL.isNotEmpty) {
         int randomIndex = random.nextInt(zL.length);
         int randomNumber = zL[randomIndex] + 1;
         return randomNumber.toString();

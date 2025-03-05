@@ -28,13 +28,13 @@ class RiverpodModel extends ChangeNotifier {
     [2, 4, 6] // Diagonal 2
   ];
 
-  bool can = true;
-  bool player = false; //Player switch
+  bool can = true; //Player move on with bot (true = can do the move)
+  bool player = false; //Player switch (false = "O")
   String whoWin = ""; //Winner
   Random random = Random();
 
   void reset() {
-    //reset the board and the winner
+    //reset everything for a new match
     board = {
       "1": "assets/Invisible.png",
       "2": "assets/Invisible.png",
@@ -48,6 +48,7 @@ class RiverpodModel extends ChangeNotifier {
     };
     whoWin = "";
     player = false;
+    can = true;
 
     notifyListeners();
   }
